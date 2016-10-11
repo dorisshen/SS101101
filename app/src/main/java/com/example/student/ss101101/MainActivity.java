@@ -22,13 +22,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         data = new String[]{"AAA","BBB","CCC","DDD","EEE", "FFF", "GGG", "HHH", "QWRE","DFIH", "FIJG", "FFJU", "PIOL", "KYJ", "looyl", "glttt", "rihh,"};
-
+        myList = new ArrayList<>();
         myList.add(new Student("Doris", "09856892"));
         myList.add(new Student("Mary", "08527321"));
         myList.add(new Student("John", "05029323"));
 
         lv = (ListView) findViewById(R.id.ListView);
-        MyAdapter adapter = new MyAdapter(MainActivity.this, data);
+        //MyAdapter adapter = new MyAdapter(MainActivity.this, data);
+        MyAdapter adapter = new MyAdapter(MainActivity.this, myList);
         lv.setAdapter(adapter);
     }
 

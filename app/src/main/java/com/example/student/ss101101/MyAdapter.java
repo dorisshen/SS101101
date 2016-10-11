@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.example.student.ss101101.MainActivity;
 import com.example.student.ss101101.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by student on 2016/10/11.
  */
@@ -18,14 +20,22 @@ import com.example.student.ss101101.R;
 public class MyAdapter extends BaseAdapter {
     String[] data;
     Context context;
+    ArrayList<Student> myList;
 
     public MyAdapter(Context context, String[] data){
         this.data = data;
         this.context = context;
     }
+
+    public MyAdapter(Context context, ArrayList list){
+        this.myList = list;
+        this.context = context;
+    }
+
+
     @Override
     public int getCount() {
-        return data.length;
+        return myList.size();
     }
 
     @Override
@@ -50,16 +60,19 @@ public class MyAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView.setTag(holder);
             holder.tv = (TextView) convertView.findViewById(R.id.textView);
+            holder.tv2 = (TextView) convertView.findViewById(R.id.textView2);
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.tv.setText(data[position] + ":" + position);
+        //holder.tv.setText(data[position] + ":" + position);
+        holder.tv.setText(myList.get(position).name);
+        holder.tv2.setText(myList.get(position).tel);
         Log.d("ADAPTER" , "position : " + position);
 
         return convertView;
     }
 
     static class ViewHolder{
-        TextView tv;
+        TextView tv, tv2;
     }
 }
